@@ -2,7 +2,8 @@
 mkdir /jarvis-temp
 
 # First, get the zip file
-git clone https://github.com/andrelago13/jarvis.git /jarvis-temp
+#git clone https://github.com/andrelago13/jarvis.git /jarvis-temp
+sudo ssh-agent bash -c 'git clone git@github.com:andrelago13/jarvis.git /jarvis-temp'
 
 # Second, unzip it, if the zip file exists
 if [ -d /jarvis-temp ]; then
