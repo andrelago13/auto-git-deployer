@@ -1,28 +1,32 @@
 #!/bin/bash
 mkdir /jarvis-temp
 
+(cd /jarvis && docker-compose down)
+#(cd /jarvis && docker-compose rm)
+rm -rf /jarvis
+
 # First, get the zip file
 #git clone https://github.com/andrelago13/jarvis.git /jarvis-temp
-sudo ssh-agent bash -c 'git clone git@github.com:andrelago13/jarvis.git /jarvis-temp'
+sudo ssh-agent bash -c 'git clone git@github.com:andrelago13/jarvis.git /jarvis'
 
 # Second, unzip it, if the zip file exists
 if [ -d /jarvis-temp ]; then
     #Bring docker down
-    (cd /jarvis && docker-compose down)
-    (cd /jarvis && docker-compose rm)
+#    (cd /jarvis && docker-compose down)
+#    (cd /jarvis && docker-compose rm)
 
     # Delete previous dir
-    rm -rf /jarvis
-    mkdir /jarvis
+#    rm -rf /jarvis
+#    mkdir /jarvis
 
     # Rename project directory to desired name
-    mv -f /jarvis-temp/* /jarvis
+#    mv /jarvis-temp /jarvis
 
     #Restart docker
-    (cd /jarvis && docker-compose up --build -d)
+    (cd /jarvis && docker-compose up -d)
 
     #Remove temp dir
-    rm -rf /jarvis-temp
+#    rm -rf /jarvis-temp
 
     # Delete current directory
     # rm -rf /www/website-enei/app
