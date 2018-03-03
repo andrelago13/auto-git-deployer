@@ -1,4 +1,4 @@
-var express = require('express');
+  }var express = require('express');
 var router = express.Router();
 var execFile = require('child_process').execFile;
 
@@ -11,17 +11,15 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var execOptions = {
     maxBuffer : 1024 * 1024
-  }
+ 
 
-  var branch = JSON.parse(req.body.payload).ref;
-  if(branch !== "refs/heads/master") {
+  if(req.body["ref"] !== "refs/head/master") {
     console.log("Skipping deployment");
     res.sendStatus(200);
     return;
   }
 
-  console.log("Performing deploy");
-
+  console.log("Deploying app");
   execFile("/auto-git-deployer/util/update-script.sh", execOptions, function(error, stdout, stderr) {
     console.log('Git script executed');
     console.log(error);
